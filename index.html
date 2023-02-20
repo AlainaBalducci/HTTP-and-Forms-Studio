@@ -1,19 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <head>
-	<meta charset="utf-8">
-	<script>
-		// TODO: create a handler
-    window.addEventListener("load", function(){
-        // TODO: register the handler
+  <meta charset="utf-8" />
+  <script>
+    // TODO: create a handler
+    function setSearchEngine() {
+      let engines = {
+        Google: "https://www.google.com/search",
+        DuckDuckGo: "https://duckduckgo.com/ ",
+        Bing: "https://www.bing.com/search",
+        Ask: "https://www.ask.com/web",
+      };
+      let form = document.getElementById("searchForm");
+
+      let selectedEngine = document.querySelector("input[name=engine]:checked");
+      if (!selectedEngine) {
+        alert("need to pick engine");
+      }
+
+      let action = engines[selectedEngine.value];
+
+      form.setAttribute("action", action);
+      // console.log("search");
+    }
+    window.addEventListener("load", function () {
+      let form = document.getElementById("searchForm");
+      form.addEventListener("submit", setSearchEngine);
+      // TODO: register the handler
     });
-	</script>
+  </script>
+		<style>
+			body {
+				background-color: purple;border-color: black;
+				border-radius: 50%;
+				color: lime;
+				font-size: 20px;
+				font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+			}
+			button {
+				background-color: blue;
+				border-width: 10px;
+				border-color: yellow;
+				border-radius: 50px;
+				font-size: 20px;
+			}
+			
+			#searchForm {
+				background-color: rgb(221, 41, 21);
+			}
+
+			
+
+
+		</style>
 </head>
 
 <body>
+  <form id="searchForm">
+    <input type="text" name="q" required />
+    <label><input type="radio" name="engine" value="Google" />Google</label>
+    <label
+      ><input type="radio" name="engine" value="DuckDuckGo" />DuckDuckGo</label
+    >
+    <label><input type="radio" name="engine" value="Bing" />Bing</label>
+    <label><input type="radio" name="engine" value="Ask" />Ask</label>
+    <button id="submit">Go!</button>
 
-	<form id="searchForm">
     <!-- TODO: add form elements -->
-	</form>
-
+  </form>
 </body>
